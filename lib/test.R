@@ -2,10 +2,11 @@
 ### Fit the regression model with testing data ###
 ######################################################
 
-### Author: Chengliang Tang
+### Author: Group 2
 ### Project 3
 
-test <- function(modelList, dat_test){
+test <- function(modelList, dat_test, params = NULL,
+                 test_gbm = F, test_xgb = F,test_lr = F,test_rf = F){
   
   ### Fit the classfication model with testing data
   
@@ -16,6 +17,7 @@ test <- function(modelList, dat_test){
   
   ### load libraries
   library("gbm")
+  library("xgboost")
   
   predArr <- array(NA, c(dim(dat_test)[1], 4, 3))
   
@@ -26,9 +28,21 @@ test <- function(modelList, dat_test){
     c2 <- (i-c1) %/% 4 + 1
     featMat <- dat_test[, , c2]
     ### make predictions
-    predArr[, c1, c2] <- predict(fit_train$fit, newdata=featMat, 
-                    n.trees=fit_train$iter, type="response")
+    if(test_gbm){
+      predArr[, c1, c2] <- predict(fit_train$fit, newdata=featMat, 
+                                   n.trees=fit_train$iter, type="response")
+    } 
+    if(test_xgb) {
+      predArr[, c1, c2] <- predict(fit_train$fit, newdata = featMat)
+    }
+    
+    if(test_lr){
+      predArr[, c1, c2] <- predict(fit_train, newdata = dat_test)
+    }
+    
+    if(test_rf){
+      predArr[, c1, c2] <- predict(fit_train, newdata = dat_test)
+    }
   }
   return(as.numeric(predArr))
 }
-
