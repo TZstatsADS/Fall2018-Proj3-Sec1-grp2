@@ -1,19 +1,19 @@
 # Project: Can you unscramble a blurry image? 
-![image](figs/example.png)
+![image](figs/comparison.png)
 
 ### [Full Project Description](doc/project3_desc.md)
 
 Term: Fall 2018
 
-+ Team #
++ Team #2
 + Team members
-	+ team member 1
-	+ team member 2
-	+ team member 3
-	+ team member 4
-	+ team member 5
+	+ Jannie Chen (mc4398)
+	+ Shilin Li   (sl4261)
+	+ Yiding Xie  (yx2443)
+	+ Yang Xing   (yx2416)
+	+ Zhibo Zhou  (zz2520)
 
-+ Project summary: In this project, we created a classification engine for enhance the resolution of images. 
++ Project summary: In this project, we created and improved the regression engines to enhance the resolution of images. The train set includes 1500 images of high resolution and low resolution. Before we get the test set, we found 50 pieces of pictures to test. At first, we improved the baseline model (GBM) by changing the depth from 1 to 11. The training time of baseline model is more than 6 hours. The test time of baseline model is around 53 minutes. Then, we applied the XGBoost model to get higher resolution. The training time and test time of XGBoost model is around 4 minutes and 35 seconds. 
 	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
