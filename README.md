@@ -21,7 +21,7 @@ Term: Fall 2018
 
 **Baseline Model (GBM)**
 + Feature extraction:
-[image](figs/Feature Extraction.png)
+![image](figs/Feature%20Extraction.png)
 
 	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
