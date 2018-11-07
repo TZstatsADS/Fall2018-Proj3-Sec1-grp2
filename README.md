@@ -1,5 +1,5 @@
 # Project: Can you unscramble a blurry image? 
-![image](figs/comparison4Pic.png)
+![image](figs/Comparison4Pic.png)
 
 ### [Full Project Description](doc/project3_desc.md)
 
