@@ -13,6 +13,13 @@ Term: Fall 2018
 	+ Yang Xing   (yx2416)
 	+ Zhibo Zhou  (zz2520)
 
++ Project Objective:
+	+ Predict super-resolution images from its corresponding low-resolution images
+	+ Two models need to be implemented: baseline (GBM) and improved (XGBoost)
+	+ Model parameters are determined using cross validation
+		+ Minimizing error: MSE
+		+ Maintaining speed
+
 + Project summary: In this project, we created and improved the regression engines to enhance the resolution of images. The train set includes 1500 images of high resolution and low resolution, respectively. At first, we improved the baseline model (GBM) by varying the depth from 1 to 11 and we determined 11 to be the optimal depth to use. The training time of baseline model is more than 6 hours. The test time of baseline model is around 53 minutes. Then, we applied the XGBoost model to get higher resolution. The training time and test time of XGBoost model are around 4 minutes and 35 seconds each. 
 
 + Models used:
