@@ -1,5 +1,5 @@
 # Project: Can you unscramble a blurry image? 
-![image](figs/comparison.png)
+![image](figs/comparison4Pic.png)
 
 ### [Full Project Description](doc/project3_desc.md)
 
@@ -19,15 +19,18 @@ Term: Fall 2018
 	+ Baseline: GBM
 	+ Improved: XGBoost
 
-**Baseline Model (GBM)**
 + Feature extraction:
-+ ![image](figs/featmat_calc.png)
-+ ![image](figs/labmat_calc.png)
-+ ![image](figs/Feature%20Extraction.png)
+	+ ![image](figs/featmat_calc.png)
+	+ ![image](figs/labmat_calc.png)
+	+ ![image](figs/Feature%20Extraction.png)
 + FeatMat: Instead of using for loops, we instead defined a particular direction, and then we tried to find a neighbor in that direction for every point in the whole matrix and subtracted that value from the corresponding center point. For example, in picture above, if the middle point is 5, then the value in its upper left direction should be 1-5. if the middle point is 6, then it should be 2-6.  We could then move the matrix to the opposite direction, which is lower right. After calculating (the new matrix – the original matrix), we could get the values from the upper left direction. We applied the similar idea 8 more times and get the featmat.
 
 + LabMat: 
 
+
+**Model Comparison**
+![image](figs/Comparison_Complete.png)
+Picture above shows the comparison in running time between the different models we utilized. 
 	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
