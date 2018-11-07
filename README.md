@@ -5,7 +5,7 @@
 
 Term: Fall 2018
 
-+ Team #
++ Team #2
 + Team members
 	+ Jannie Chen (mc4398)
 	+ Shilin Li   (sl4261)
