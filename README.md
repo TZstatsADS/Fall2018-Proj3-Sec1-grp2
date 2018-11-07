@@ -20,8 +20,9 @@ Term: Fall 2018
 	+ Improved: XGBoost
 
 **Baseline Model (GBM)**
-+ Feature extraction:
+Feature extraction:
 ![image](figs/Feature%20Extraction.png)
+Instead of using for loops, we instead defined a particular direction, and then we tried to find a neighbor in that direction for every point in the whole matrix and subtracted that value from the corresponding center point.
 
 	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
