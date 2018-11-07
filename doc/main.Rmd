@@ -29,7 +29,7 @@ Set the working directory to the image folder. Specify the training and the test
 
 ```{r wkdir, eval=FALSE}
 set.seed(2018)
-setwd("./ads_fall2018_proj3") 
+setwd("~/Documents/GitHub/Fall2018-Proj3-Sec1-grp2") 
 # here replace it with your own path or manually set it in RStudio to where this rmd file is located. 
 # use relative path for reproducibility
 ```
@@ -37,6 +37,7 @@ setwd("./ads_fall2018_proj3")
 Provide directories for training images. Low-resolution (LR) image set and High-resolution (HR) image set will be in different subfolders. 
 ```{r}
 train_dir <- "../data/train_set/" # This will be modified for different data sets.
+#train_dir <- "/Users/shilinli/Documents/GitHub/Fall2018-Proj3-Sec1-sec1proj3_grp2/data/train_set/"
 train_LR_dir <- paste(train_dir, "LR/", sep="")
 train_HR_dir <- paste(train_dir, "HR/", sep="")
 train_label_path <- paste(train_dir, "label.csv", sep="") 
@@ -154,9 +155,19 @@ par_best <- list(depth=model_best)
 
 * Train the model with the entire training set using the selected model (model parameter) via cross-validation.
 ```{r final_train}
+load("../lib/feature_train.RData")
+
+# Baseline GBM
+#tm_train=NA
+#tm_train <- system.time(fit_train_gbm <- train(dat_train$feature, dat_train$label,run_gbm = T,run_xgb = F,run_lr=F, run_rf = F))
+
+# Improved Model XGB
 tm_train=NA
-tm_train <- system.time(fit_train <- train(feat_train, label_train, par_best))
-save(fit_train, file="../output/fit_train.RData")
+#tm_train <- system.time(fit_train <- train(feat_train, label_train, par_best))
+tm_train <- system.time(fit_train_xgb <- train(dat_train$feature, dat_train$label,run_gbm = F,run_xgb = T,run_lr=F, run_rf = F))
+
+#save(fit_train_gbm, file="../output/fit_train_gbm.RData")
+#save(fit_train_xgb, file="../output/fit_train_xgb.RData")
 ```
 
 ### Step 5: Super-resolution for test images
@@ -166,18 +177,38 @@ Feed the final training model with the completely holdout testing data.
   + Input: a path that points to the folder (empty) of high-resolution test images.
   + Input: an R object that contains tuned predictors.
   + Output: construct high-resolution versions for each low-resolution test image.
-```{r superresolution}
-source("../lib/superResolution.R")
-test_dir <- "../data/test_set/" # This will be modified for different data sets.
-test_LR_dir <- paste(test_dir, "LR/", sep="")
-test_HR_dir <- paste(test_dir, "HR/", sep="")
+  
+GBM Baseline
+```{r superresolution baseline}
+source("../lib/superResolution_gbm.R")
+source("../lib/Neighbor8.R")
+train_dir <- "../data/train_set/" # This will be modified for different data sets.
+train_LR_dir <- paste(train_dir, "LR/", sep="")
+train_HR_dir <- paste(train_dir, "SR-B/", sep="")
 
-tm_test=NA
+tm_test_gbm=NA
 if(run.test){
-  load(file="../output/fit_train.RData")
-  tm_test <- system.time(superResolution(test_LR_dir, test_HR_dir, fit_train))
+  load(file="../output/fit_train_gbm.RData")
+  tm_test_gbm <- system.time(superResolution_gbm(train_LR_dir, train_HR_dir, fit_train_gbm))
 }
 ```
+
+
+XGB Improved
+```{r superresolution Improved}
+source("../lib/superResolution_xgb.R")
+source("../lib/Neighbor8.R")
+train_dir <- "../data/test_set/" # This will be modified for different data sets.
+train_LR_dir <- paste(train_dir, "LR_1/", sep="")
+train_HR_dir <- paste(train_dir, "HR_xgb/", sep="")
+
+tm_test_xgb=NA
+if(run.test){
+  load(file="../output/fit_train_xgb.RData")
+  tm_test_xgb <- system.time(superResolution_xgb(train_LR_dir, train_HR_dir, fit_train_xgb))
+}
+```
+
 
 ### Summarize Running Time
 Prediction performance matters, so does the running times for constructing features and for training the model, especially when the computation resource is limited. 

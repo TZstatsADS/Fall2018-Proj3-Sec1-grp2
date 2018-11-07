@@ -67,23 +67,21 @@ train <- function(feat_train, label_train, params=NULL, run_gbm = F,
       modelList[[i]] <- list(fit= xgboost_fit) 
     }
     
-    
-    ## logistic regression
-    lr <- NULL
+    ## SVM
+    svm_list <- NULL
     if(run_lr){
-      if( !require("nnet")){
-        install.packages("nnet")
-      }
-      library("nnet")
-      
-      dat_train_complete <- cbind(featMat,labMats)
-      lr.fit = multinom(labMat~., 
-                        data = dat_train_complete, 
-                        MaxNWts=16000)
-      
-      modelList[[i]] <- list(fit= lr.fit)
+      library("e1071")
+      dat_train_complete <- cbind(featMat,labMat)
+      fitControl = trainControl(method = 'cv', number = 2) 
+      svmGrid = expand.grid(C = c(0.5,1,2)) 
+      #start_time_svm = Sys.time() # Model Start Time 
+      svm_list.fit <- svm(featMat, labMat, type = "eps-regression" ,kernel= "radial", gamma = 0.2 ) 
+      #end_time_svm = Sys.time() # Model End time 
+      #svm_time = end_time_svm - start_time_svm #Total Running Time 
+      #return(list(fit = svm.fit, time = svm_time)) 
+      modelList[[i]] <- list(fit= svm_list.fit)
     }
-    
+      
     ## random forest
     rf <- NULL
     if(run_rf){
