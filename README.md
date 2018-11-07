@@ -29,6 +29,7 @@ Term: Fall 2018
 
 
 **Model Comparison**
+
 ![image](figs/Comparison_Complete.png)
 
 Picture above shows the comparison in running time between the different models we utilized. 
