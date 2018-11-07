@@ -2,7 +2,7 @@
 ### Construct features and responses for training images###
 #############################################################
 
-### Authors: Chengliang Tang/Tian Zheng
+### Authors: Group2
 ### Project 3
 
 feature <- function(LR_dir, HR_dir, n_points=1000){

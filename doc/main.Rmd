@@ -1,6 +1,6 @@
 ---
 title: "Project 3 - Example Main Script"
-author: "Chengliang Tang, Tian Zheng"
+author: "Group2"
 output: html_notebook
 ---
 
