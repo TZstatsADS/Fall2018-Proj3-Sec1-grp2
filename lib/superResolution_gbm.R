@@ -2,7 +2,7 @@
 ### Super-resolution ###
 ########################
 
-### Author: Chengliang Tang
+### Author: Group2
 ### Project 3
 
 superResolution_gbm <- function(LR_dir, HR_dir, modelList){

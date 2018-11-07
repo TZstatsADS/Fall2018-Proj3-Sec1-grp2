@@ -1,3 +1,5 @@
+#In this part, on getting the featmat, we applied some matrix manipulation techniques instead of simply using the for loop. 
+#we first define particular direction, let’s say upper left and then we tried to find a neighbor in that direction for every point on the whole matrix and subtracted the value from the corresponding center point.
 
 # Extract eight neighbors for each pixcel for each RGB
 eight_nei <- function(color.i, img){
