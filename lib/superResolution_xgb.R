@@ -17,7 +17,7 @@ superResolution_xgb <- function(LR_dir, HR_dir, modelList){
   n_files <- length(list.files(LR_dir))
   
   ### read LR/HR image pairs
-  for(i in 1:50){
+  for(i in 1:n_files){
     imgLR <- readImage(paste0(LR_dir,  "img", "_", sprintf("%04d",i), ".jpg"))
     #imgLR <- readImage("img_0004.jpg")
     
