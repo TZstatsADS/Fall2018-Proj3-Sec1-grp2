@@ -25,6 +25,7 @@ Term: Fall 2018
 + Models used:
 	+ Baseline: GBM
 	+ Improved: XGBoost
+	+ Unfinisehd: SVM, Random Forest
 
 + Feature extraction:
 	+ ![image](figs/featmat_calc.png)
@@ -42,7 +43,19 @@ Term: Fall 2018
 
 Picture above shows the comparison in running time between the different models we utilized. 
 	
-**Contribution statement**: ([default](doc/a_note_on_contributions.md)) All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
+**Contribution statement**: ([default](doc/a_note_on_contributions.md)) 
+
++ Jannie Chen: Designed and wrote the feature extraction algorithm. Wrote the XGBoost algorithm and finished the cross validation part for XGBoost. Wrote the random forest model and trained the model using a small sample. Do the prediction on the test set using baseline model. 
+
++ Shilin Li: Improved and  rewrote the feature extraction algorithm.  Trained and tuned the baseline model. Trained the XGBoost Algorithm as our improved model. Finished the superResolution part for GBM and XGBoost. Do the prediction on the test set using baseline model. 
+
++ Yiding Xie: Revised the feature extraction. Wrote the Supporting Vector Machine (SVM) model and trained the model using a small sample. Found and resized 50 pictures as the test set. Tested the baseline model and XGBoost improved model. Compared the two models and provided some advice. Do the prediction on the test set using baseline model.  
+
++ Yang Xing: Designed and wrote a different version of feature extraction algorithm. Finished the cross validation part of baseline model. Created the slides and prepared the presentation. Do the prediction on the test set using XGBoost model. Edited the github and uploaded the zipfiles.
+
++ Zhibo Zhou: Established and optimized the Convolution Neural Network (CNN) using tensorflow in Python. Trained the CNN model and output some high resolution pictures. Finished the Rmarkdown, Python code and output the PDF version. Do the prediction on the test set using XGBoost model. 
+
+All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement. 
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
