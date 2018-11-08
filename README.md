@@ -46,6 +46,7 @@ Term: Fall 2018
 
 Picture above shows the comparison in running time between the different models we utilized. 
 	
+	
 **Contribution statement**: ([default](doc/a_note_on_contributions.md)) 
 
 + Jannie Chen: Designed and wrote the feature extraction algorithm. Wrote the XGBoost algorithm and finished the cross validation part for XGBoost. Wrote the random forest model and trained the model using a small sample. Do the prediction on the test set using baseline model. 
