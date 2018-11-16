@@ -19,8 +19,8 @@ cv.function <- function(X.train, y.train, d, K){
     test.label <- y.train[s == i, ,]
     
     par <- list(depth=d)
-    fit <- train(train.data, train.label, par)
-    pred <- test(fit, test.data)  
+    fit <- train(train.data, train.label, par, run_gbm = T)
+    pred <- test(fit, test.data, test_gbm = T)  
     cv.error[i] <- mean((pred - test.label)^2)  
     
   }			
