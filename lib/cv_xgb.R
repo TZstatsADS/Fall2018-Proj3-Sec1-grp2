@@ -1,5 +1,12 @@
 
-cv_xgb <- function(featMat, labMat){
+cv_xgb <- function(feat_train, label_train){
+  for (i in 1:12){
+    ## calculate column and channel
+    c1 <- (i-1) %% 4 + 1
+    c2 <- (i-c1) %/% 4 + 1
+    featMat <- feat_train[, , c2]
+    labMat <- label_train[, c1, c2]
+  }
   err_cv <- list()
   library(xgboost)
   dtrain <- xgb.DMatrix(data=as.matrix(featMat),label=labMat)

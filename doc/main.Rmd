@@ -129,6 +129,7 @@ if(run.cv){
 }
 ```
 
+
 Visualize cross-validation results. 
 ```{r cv_vis}
 if(run.cv){
@@ -153,9 +154,41 @@ if(run.cv){
 par_best <- list(depth=model_best)
 ```
 
+
+#### Model selection with cross-validation for xgb
+```{r}
+load("../lib/feature_train.RData")
+source("../lib/cv_xgb.R")
+if(run.cv){
+  cvxvg <- cv_xgb(dat_train$feature,dat_train$label)
+  #save(cvxvg, file="../output/cvxvg.RData")
+}
+```
+
+
+Visualize xgb cross-validation results. 
+We plot the cross validation for xgb in which want to tune number of depths and eta. With limited time, we choose the range of testing depth of (6,7,8) and eta of (0.5, 0.6, 0.7, 0.8). From the training error and testing error graph, we found the lowest error appears at index 7 which is the combination of depth 8 and eta 0.8. However, the training sd and testing sd shows a great standard deviation in which we believe this might not be the optimal choice. The eta value of 0.8 is also too aggressive corresponding to a base of eta = 0.5. Therefore, we choose the combination appears at index 8 (depth = 8, eta = 0.6) for which we believe it is a more reasonable suggestions for the two parameters.
+```{r}
+load("../output/cvxvg.RData")
+train_err_xgb <- c(NA)
+train_sd_xgb <- c(NA)
+test_err_xgb <- c(NA)
+test_sd_xgb <- c(NA)
+for (i in 1:12) {
+  train_err_xgb[i] = mean(cvxvg[[i]][,1])
+  train_sd_xgb[i] = mean(cvxvg[[i]][,2])
+  test_err_xgb[i] = mean(cvxvg[[i]][,3])
+  test_sd_xgb[i] = mean(cvxvg[[i]][,4])
+}
+plot(train_err_xgb)
+plot(train_sd_xgb)
+plot(test_err_xgb)
+plot(test_sd_xgb)
+```
+
+
 * Train the model with the entire training set using the selected model (model parameter) via cross-validation.
 ```{r final_train}
-load("../lib/feature_train.RData")
 
 # Baseline GBM
 #tm_train=NA
